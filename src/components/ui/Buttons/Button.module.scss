@@ -1,0 +1,15 @@
+.button {
+	width: 100%;
+	padding-inline: 24px;
+	padding-block: 10px;
+	border: none;
+	border-radius: 10px;
+	background-image: radial-gradient( at 50% 200%, rgba(186, 215, 255, 1) 10%, rgba(33, 70, 120, 1) 90%);
+	text-decoration: none;
+	color: #fff;
+	font-size: 1rem;
+	letter-spacing: -0.02em;
+	display: flex;
+	justify-content: center;
+	line-height: 1;
+}

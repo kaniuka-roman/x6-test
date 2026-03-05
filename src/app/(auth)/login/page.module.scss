@@ -1,0 +1,81 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	& .card {
+		position: relative;
+		max-width: 384px;
+		width: 100%;
+		min-height: 500px;
+		padding-block: 40px;
+		padding-inline: 32px;
+		border-radius: 20px;
+		border: 1px solid transparent;
+		background:
+			linear-gradient(rgba(255, 255, 255, 1)) padding-box,
+			linear-gradient(
+					to left bottom,
+					rgba(34, 106, 205, 0.2),
+					rgba(34, 106, 205, 0.5),
+					rgba(34, 106, 205, 0.2),
+					rgba(34, 106, 205, 0.8)
+				)
+				border-box;
+		box-shadow: 0px 5px 20px 0px rgba(0, 99, 233, 0.05);
+		& .cardHeader {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			& .cardTitle {
+				color: rgba(17, 49, 93, 1);
+				font-size: 28px;
+				margin-top: 16px;
+			}
+			& .cardSubtitle {
+				color: rgba(17, 49, 93, 0.7);
+				font-size: 14px;
+				margin-top: 9px;
+			}
+			& .googleAuthButton {
+				margin-top: 32px;
+			}
+		}
+		& .separator {
+			position: relative;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			margin-top: 24px;
+			p {
+				color: rgba(17, 49, 93, 0.5);
+				font-size: 0.875rem;
+			}
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				width: 43%;
+				height: 2px;
+				background-color: rgba(34, 106, 205, 0.2);
+			}
+			&::before {
+				left: 0;
+			}
+			&::after {
+				right: 0;
+			}
+		}
+		& .cardFooter {
+			margin-top: 32px;
+			display: flex;
+			justify-content: center;
+			span {
+				color: rgba(17, 49, 93, 0.5);
+				font-size: 0.875rem;
+			}
+			font-size: 0.875rem;
+		}
+	}
+}

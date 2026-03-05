@@ -1,0 +1,19 @@
+.brandBadge {
+	display: flex;
+	gap: 6px;
+	align-items: center;
+	padding-block: 6px;
+	padding-inline: 12px;
+	border-radius: 8px;
+	border: 1px solid rgba(34, 106, 205, 0.2);
+	width: fit-content;
+	span {
+		color: rgba(17, 49, 93, 1);
+		user-select: none;
+	}
+
+	& .logo {
+		width: 16px;
+		height: 16px;
+	}
+}
