@@ -1,9 +1,14 @@
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 import s from './Button.module.scss';
-
-export const ButtonLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+import clsx from 'clsx';
+type ButtonProps = LinkProps & {
+   className?: string;
+   children: React.ReactNode;
+   variant?: 'primary' | 'secondary';
+};
+export const ButtonLink = ({ className, children, variant = 'primary', ...props }: ButtonProps) => {
    return (
-      <Link href={href} className={s.button}>
+      <Link {...props} className={clsx(s.button, s[variant], className)}>
          {children}
       </Link>
    );

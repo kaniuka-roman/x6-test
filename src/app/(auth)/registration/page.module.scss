@@ -3,7 +3,7 @@
 	justify-content: center;
 	flex-direction: column;
 	height: 100%;
-
+	gap: 32px;
 	& .header {
 		display: flex;
 		flex-direction: column;
@@ -17,17 +17,18 @@
 			font-size: 14px;
 			margin-top: 9px;
 		}
-		& .googleAuthButton {
-			margin-top: 32px;
-		}
+	}
+	& .signInContainer {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
 	}
 	& .separator {
 		position: relative;
 		width: 100%;
 		display: flex;
 		justify-content: center;
-		margin-top: 24px;
-		p {
+ 		p {
 			color: rgba(17, 49, 93, 0.5);
 			font-size: 0.875rem;
 		}
@@ -47,8 +48,18 @@
 			right: 0;
 		}
 	}
-	& .cardFooter {
-		margin-top: 32px;
+	& .agreement {
+		color: rgba(17, 49, 93, 0.5);
+		font-size: 0.75rem;
+		line-height: 1.2;
+		text-align: center;
+		width: 240px;
+		align-self: center;
+		& span {
+			text-decoration: underline;
+		}
+	}
+	& .footer {
 		display: flex;
 		justify-content: center;
 		span {

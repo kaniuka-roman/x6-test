@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	& .card {
+		position: relative;
+		max-width: 384px;
+		width: 100%;
+		padding-block: 40px;
+		padding-inline: 32px;
+		border-radius: 20px;
+		border: 1px solid transparent;
+		background:
+			linear-gradient(rgba(255, 255, 255, 1)) padding-box,
+			linear-gradient(
+					to left bottom,
+					rgba(34, 106, 205, 0.2),
+					rgba(34, 106, 205, 0.5),
+					rgba(34, 106, 205, 0.2),
+					rgba(34, 106, 205, 0.8)
+				)
+				border-box;
+		box-shadow: 0px 5px 20px 0px rgba(0, 99, 233, 0.05);
+		& .cardHeader {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 16px;
+		}
+	}
+}

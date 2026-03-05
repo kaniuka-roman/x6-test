@@ -4,12 +4,20 @@
 	padding-block: 10px;
 	border: none;
 	border-radius: 10px;
-	background-image: radial-gradient( at 50% 200%, rgba(186, 215, 255, 1) 10%, rgba(33, 70, 120, 1) 90%);
 	text-decoration: none;
-	color: #fff;
 	font-size: 1rem;
 	letter-spacing: -0.02em;
 	display: flex;
 	justify-content: center;
 	line-height: 1;
+	cursor: pointer;
+	&.primary {
+		background-image: radial-gradient(at 50% 200%, rgba(186, 215, 255, 1) 10%, rgba(33, 70, 120, 1) 90%);
+		color: #fff;
+	}
+	&.secondary {
+		background: rgba(17, 49, 93, 0.1);
+		color: rgba(17, 49, 93, 1);
+		box-shadow: 0px 4px 15.800000190734863px 0px rgba(0, 0, 0, 0.02);
+	}
 }

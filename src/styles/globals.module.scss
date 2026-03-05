@@ -2,11 +2,13 @@
 html {
 	height: 100dvh;
 	display: flex;
+	background: rgba(241, 241, 241, 1);
 }
-body {
+html body {
 	width: 100%;
 	display: flex;
    font-family: var(--font-twklausanne), Arial, Helvetica, sans-serif;
+	padding: 10px 8px;
 }
 
 html * {
@@ -14,6 +16,7 @@ html * {
 	margin: 0;
 	line-height: 1.15;
 	letter-spacing: -0.02em;
+	box-sizing: border-box;
 }
 .main {
 	border: 1px solid rgba(0, 0, 0, 0.1);
