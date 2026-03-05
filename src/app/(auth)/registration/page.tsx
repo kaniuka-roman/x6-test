@@ -1,10 +1,9 @@
 import { GoogleAuthButton } from '@/components/ui/GoogleAuthButton/GoogleAuthButton';
 import s from './page.module.scss';
 import { ButtonLink } from '@/components/ui/Buttons/ButtonLink';
-import Link from 'next/link';
 export default function RegistrationPage() {
    return (
-      <>
+      <div className={s.container}>
          <div className={s.header}>
             <h2 className={s.cardTitle}>Welcome to X6sense</h2>
             <p className={s.cardSubtitle}>Create you free account now</p>
@@ -16,6 +15,6 @@ export default function RegistrationPage() {
             </div>
             <ButtonLink href='/registration/1'>Continue with email</ButtonLink>
          </div>
-      </>
+      </div>
    );
 }

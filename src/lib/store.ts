@@ -7,6 +7,7 @@ type UserStore = {
    verified: boolean;
    nickname: string;
    account_type: AccountType;
+	profileImage: File | null
 };
 
 type UserAction = {
@@ -19,6 +20,7 @@ export const useUserStore = create<UserStore & UserAction>(set => ({
    verified: false,
    nickname: '',
    account_type: 'Personal',
+	profileImage: null,
    updateUser: user =>
       set(store => {
 			const userEntries = Object.entries(user)

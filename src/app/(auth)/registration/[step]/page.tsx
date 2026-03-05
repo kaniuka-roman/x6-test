@@ -1,4 +1,5 @@
 import { StepOne } from './components/StepOne';
+import { StepThree } from './components/StepThree';
 import { StepTwo } from './components/StepTwo';
 export default async function StepPage(props: PageProps<'/registration/[step]'>) {
    const { step } = await props.params;
@@ -6,12 +7,3 @@ export default async function StepPage(props: PageProps<'/registration/[step]'>)
    if (step === '2') return <StepTwo />;
    if (step === '3') return <StepThree />;
 }
-
-
-const StepThree = () => {
-   return (
-      <>
-         <h1>Step Three</h1>
-      </>
-   );
-};

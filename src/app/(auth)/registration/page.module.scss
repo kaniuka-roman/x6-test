@@ -48,24 +48,5 @@
 			right: 0;
 		}
 	}
-	& .agreement {
-		color: rgba(17, 49, 93, 0.5);
-		font-size: 0.75rem;
-		line-height: 1.2;
-		text-align: center;
-		width: 240px;
-		align-self: center;
-		& span {
-			text-decoration: underline;
-		}
-	}
-	& .footer {
-		display: flex;
-		justify-content: center;
-		span {
-			color: rgba(17, 49, 93, 0.5);
-			font-size: 0.875rem;
-		}
-		font-size: 0.875rem;
-	}
+
 }

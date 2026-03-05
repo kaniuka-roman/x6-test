@@ -1,0 +1,127 @@
+$border-color: #e2e8f0;
+$primary-color: #3b82f6;
+$danger-color: #ef4444;
+$bg-gray: #f8fafc;
+
+.uploaderContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	width: 166px;
+}
+
+.dropzone {
+	position: relative;
+	width: 95px;
+	height: 95px;
+	border: 2px dashed rgba(34, 106, 205, 0.5);
+	border-radius: 50%;
+	background-color: none;
+	padding: 4px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease;
+
+	&:not(:has(.removeButton:hover)) {
+		&:hover {
+			border-color: $primary-color;
+			background-color: rgba($primary-color, 0.05);
+		}
+	}
+}
+
+.preview {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.placeholder {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	background: rgba(34, 106, 205, 0.05);
+	align-items: center;
+	border-radius: 50%;
+	&::after {
+		content: "";
+		position: absolute;
+		width: 26px;
+		height: 26px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		border: 1px solid transparent;
+		background:
+			linear-gradient(rgba(255, 255, 255, 1)) padding-box,
+			linear-gradient(
+					rgba(34, 106, 205, 0.2),
+					rgba(34, 106, 205, 0.8) 20%,
+					rgba(34, 106, 205, 0.2) 40%,
+					rgba(34, 106, 205, 0.5)
+				)
+				border-box;
+	}
+}
+
+.removeButton {
+	position: absolute;
+	bottom: 4px;
+	right: 4px;
+	background:
+		linear-gradient(rgba(255, 255, 255, 1)) padding-box,
+		linear-gradient(
+				rgba(34, 106, 205, 0.2),
+				rgba(34, 106, 205, 0.8) 20%,
+				rgba(34, 106, 205, 0.2) 40%,
+				rgba(34, 106, 205, 0.5)
+			)
+			border-box;
+	color: white;
+	border: 1px solid transparent;
+	border-radius: 50%;
+	width: 26px;
+	height: 26px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 2;
+	transition: transform 0.2s ease;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+}
+
+.hiddenInput {
+	display: none;
+}
+.errorState {
+	border-color: $danger-color;
+	background-color: rgba($danger-color, 0.05);
+}
+
+.supportText {
+	color: rgba(17, 49, 93, 0.5);
+	font-size: 0.75rem;
+	line-height: 1.2;
+	text-align: center;
+	letter-spacing: -0.01em;
+}
+.uploadButton {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	letter-spacing: -0.02em;
+	padding-inline: 12px;
+	padding-block: 8px;
+	font-size: 0.875rem;
+}

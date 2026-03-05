@@ -1,0 +1,87 @@
+.selectContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
+	& .label {
+		color: rgba(17, 49, 93, 0.5);
+		font-size: 0.875rem;
+		width: fit-content;
+	}
+	& .select {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		padding-inline: 16px;
+		padding-block: 13px;
+		border: 1px solid rgba(53, 89, 137, 0.2);
+		border-radius: 10px;
+		background: rgba(249, 249, 249, 1);
+		cursor: pointer;
+		& .currentOptionLabel {
+			color: rgba(17, 49, 93, 1);
+			font-size: 0.875rem;
+			line-height: 1.15;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			width: 100%;
+
+		}
+		& .chevronIcon {
+			flex: 0 0 20px;
+			transition: all 0.3s ease-in-out;
+		}
+		&.open {
+			& .chevronIcon {
+				transform: rotate(-180deg);
+			}
+		}
+	}
+}
+
+.dropdown {
+	position: absolute;
+	z-index: 100;
+	border-radius: 16px;
+	backdrop-filter: blur(100px);
+	background: rgba(16, 26, 41, 0.7);
+	transform: translate(-100%, -10px);
+	opacity: 0;
+	max-height: 0;
+	overflow: clip;
+	transition: all 0.3s ease-in-out;
+	&.open {
+		opacity: 1;
+		max-height: 192px;
+		transform: translate(-100%, 0px);
+	}
+	& .dropdownLabel {
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 0.625rem;
+		line-height: 0.7;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		padding: 20px 60px 12px 20px;
+		text-wrap: nowrap;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
+	& .dropdownOptions {
+		padding: 8px 8px 4px;
+		& .dropdownOption {
+			color: rgba(255, 255, 255, 1);
+			font-size: 0.75rem;
+			line-height: 1.2;
+			padding: 10px 8px;
+			cursor: pointer;
+			border-radius: 10px;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				background: rgba(255, 255, 255, 0.05);
+			}
+			&.selected {
+				background: rgba(255, 255, 255, 0.1);
+			}
+		}
+	}
+}

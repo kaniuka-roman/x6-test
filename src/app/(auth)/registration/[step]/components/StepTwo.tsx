@@ -1,91 +1,86 @@
 'use client';
 
-import { Input } from '@/components/ui/Inputs/Input';
-import { PasswordInput } from '@/components/ui/Inputs/PasswordInput';
 import s from '../page.module.scss';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/Buttons/Button';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { PasswordStrengthIndicator } from '@/components/shared/PasswordStrengthIndicator/PasswordStrengthIndicator';
 import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/lib/store';
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/Inputs/InputOTP';
+import {  useState } from 'react';
+import { REGEXP_ONLY_DIGITS } from 'input-otp';
 
-const schema = z
-   .object({
-      email: z.string().email('Invalid email address'),
-      password: z
-         .string()
-         .min(6, 'At least 6 characters')
-         .regex(/[0-9]/, 'At least one digit')
-         .regex(/[a-z]/, 'At least one lowercase letter')
-         .regex(/[^A-Za-z0-9]/, 'At least one special character'),
-      confirmPassword: z.string(),
-   })
-   .refine(data => data.password === data.confirmPassword, {
-      message: "Passwords don't match",
-      path: ['confirmPassword'],
-   });
+const schema = z.object({
+   otp: z.string().length(6, 'OTP must be 6 digits'),
+});
 
 type FormValues = z.infer<typeof schema>;
 export const StepTwo = () => {
    const router = useRouter();
-	const email = useUserStore(state => state.email);
-	console.log(email);
-   const { handleSubmit, register, watch } = useForm<FormValues>({
+   const [verifying, setVerifying] = useState(false);
+   const updateUser = useUserStore(state => state.updateUser);
+   const email = useUserStore(state => state.email);
+   const { handleSubmit, control } = useForm<FormValues>({
       resolver: zodResolver(schema),
       mode: 'onChange',
       defaultValues: {
-         email: '',
-         password: '',
-         confirmPassword: '',
+         otp: '',
       },
    });
-   const passwordValue = watch('password', '');
-   const strengthChecks = [
-      { label: 'At least 6 characters', met: passwordValue.length >= 6 },
-      { label: 'At least 1 number', met: /[0-9]/.test(passwordValue) },
-      { label: 'At least 1 lowercase letter', met: /[a-z]/.test(passwordValue) },
-      { label: 'At least 1 special character', met: /[^A-Za-z0-9]/.test(passwordValue) },
-   ];
+
    const onSubmit = (data: FormValues) => {
+      if (data.otp.length === 6) {
+         setVerifying(true);
+         setTimeout(() => {
+            setVerifying(false);
+            updateUser({ verified: true });
+            router.push('/registration/3');
+         }, 1200);
+      }
       console.log(data);
-		// updateUser({ email: data.email, password: data.password });
-		router.push('/registration/2');
    };
    return (
-      <>
+      <div className={s.container}>
          <div className={s.header}>
-            <h2 className={s.cardTitle}>Welcome to X6sense</h2>
-            <p className={s.cardSubtitle}>Step 1 of 4</p>
+            <h2 className={s.cardTitle}>Verify your email</h2>
+            <p className={s.cardSubtitle}>Step 2 of 4</p>
          </div>
-         <form onSubmit={handleSubmit(onSubmit)} className={s.stepOneForm}>
-            <Input label='Email' placeholder='Enter your email' {...register('email')} />
-            <div>
-               <PasswordInput
-                  label='Create Password'
-                  placeholder='Crete your password'
-                  className={s.inputMarginTop}
-                  {...register('password')}
-               />
-               <PasswordStrengthIndicator
-                  isPasswordsMatch={passwordValue === watch('confirmPassword')}
-                  rules={strengthChecks}
-                  className={s.passwordStrengthIndicator}
-               />
+         <form onSubmit={handleSubmit(onSubmit)} className={s.stepTwoForm}>
+            <div className={s.textWrapper}>
+               <p className={s.text}>Please enter the code sent to</p>
+               <p className={s.email}>{email}</p>
             </div>
-            <PasswordInput
-               label='Confirm Password'
-               placeholder='Confirm your password'
-               {...register('confirmPassword')}
+            <Controller
+               name='otp'
+               control={control}
+               render={({ field }) => (
+                  <InputOTP
+                     maxLength={6}
+                     name={field.name}
+                     value={field.value}
+                     onChange={field.onChange}
+                     pattern={REGEXP_ONLY_DIGITS}>
+                     <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                        <InputOTPSlot index={4} />
+                        <InputOTPSlot index={5} />
+                     </InputOTPGroup>
+                  </InputOTP>
+               )}
             />
-            <div className={s.buttonsContainer}>
-               <Button variant='secondary' type='button' onClick={() => router.back()}>
-                  Back
-               </Button>
-               <Button type='submit'>Continue</Button>
-            </div>
+
+            <Button type='submit' isLoading={verifying}>
+               Verify
+            </Button>
          </form>
-      </>
+         <div className={s.footer}>
+            <span>Didn&apos;t receive the code? </span>&nbsp;
+            <span className={s.link}>Resend code</span>
+         </div>
+      </div>
    );
 };
