@@ -28,9 +28,10 @@ const schema = z
    });
 
 type FormValues = z.infer<typeof schema>;
-export const StepOne = () => {
+export const StepTwo = () => {
    const router = useRouter();
-	const updateUser = useUserStore(state => state.updateUser);
+	const email = useUserStore(state => state.email);
+	console.log(email);
    const { handleSubmit, register, watch } = useForm<FormValues>({
       resolver: zodResolver(schema),
       mode: 'onChange',
@@ -49,7 +50,7 @@ export const StepOne = () => {
    ];
    const onSubmit = (data: FormValues) => {
       console.log(data);
-		updateUser({ email: data.email, password: data.password });
+		// updateUser({ email: data.email, password: data.password });
 		router.push('/registration/2');
    };
    return (
