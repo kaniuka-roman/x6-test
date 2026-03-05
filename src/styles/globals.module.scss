@@ -1,0 +1,30 @@
+
+html {
+	height: 100dvh;
+	display: flex;
+}
+body {
+	width: 100%;
+	display: flex;
+   font-family: var(--font-twklausanne), Arial, Helvetica, sans-serif;
+}
+
+html * {
+	padding: 0;
+	margin: 0;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+}
+.main {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 14px;
+	height: 100%;
+	width: 100%;
+}
+
+html a {
+	text-decoration: none;
+	color: rgba(61, 130, 222, 1);
+	font-size: 0.875rem;
+	letter-spacing: -0.02em;
+}
