@@ -1,0 +1,8 @@
+.newPassword {
+	gap: 32px;
+	display: flex;
+	flex-direction: column;
+	& .passwordStrengthIndicator {
+		margin-top: 12px;
+	}
+}

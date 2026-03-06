@@ -1,0 +1,29 @@
+.container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	height: 100%;
+	gap: 32px;
+	& .header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		& .cardTitle {
+			color: rgba(17, 49, 93, 1);
+			font-size: 28px;
+		}
+		& .cardSubtitle {
+			color: rgba(17, 49, 93, 0.7);
+			font-size: 14px;
+			margin-top: 9px;
+		}
+	}
+	& .form {
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+	}
+	& .backToLogin {
+		align-self: center;
+	}
+}

@@ -65,13 +65,12 @@
 		align-items: center;
 		width: 20px;
 		height: 20px;
-		border: 1px solid rgba(53, 89, 137, 0.2);
+		outline: 1px solid rgba(53, 89, 137, 0.2);
 		border-radius: 4px;
 		background: rgba(255, 255, 255, 0);
 
 		transition:
-			box-shadow 0.2s ease-in-out,
-			background 0.2s ease-in-out;
+			all 0.2s ease-in-out;
 		svg {
 			width: 12px;
 			height: 9px;
@@ -80,6 +79,7 @@
 		}
 	}
 	& .checkbox:checked + .label .customCheckbox {
+		outline-color:transparent;
 		box-shadow:
 			inset 0px 1px 18px 2px rgba(173, 208, 255, 0.2),
 			inset 0px 1px 4px 1px rgba(222, 236, 255, 0.8),

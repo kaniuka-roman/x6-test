@@ -40,3 +40,25 @@ export const useUserStore = create<UserStore & UserAction>(set => {
          })),
    };
 });
+
+type ForgotPassword = {
+   email: string;
+   verified: boolean;
+};
+type ForgotPasswordAction = {
+   updateData: (data: Partial<ForgotPassword>) => void;
+};
+
+export const useForgotPasswordStore = create<ForgotPassword & ForgotPasswordAction>(set => {
+   return {
+      email: '',
+      verified: false,
+      updateData: data =>
+         set(store => {
+            const userEntries = Object.entries(data);
+            const filterFalsyEntries = userEntries.filter(([_, value]) => value !== undefined);
+            const dataObject = Object.fromEntries(filterFalsyEntries);
+            return { ...store, ...dataObject };
+         }),
+   };
+});
