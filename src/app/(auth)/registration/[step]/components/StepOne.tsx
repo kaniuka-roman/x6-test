@@ -11,17 +11,17 @@ import { PasswordStrengthIndicator } from '@/components/shared/PasswordStrengthI
 import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/lib/store';
 import Link from 'next/link';
-import { useMemo } from 'react';
-
+import { useEffect, useMemo, useState } from 'react';
+const PASSWORD_LENGTH = 6;
 const schema = z
    .object({
       email: z.string().email('Invalid email address'),
       password: z
          .string()
-         .min(6, 'At least 6 characters')
-         .regex(/[0-9]/, 'At least one digit')
-         .regex(/[a-z]/, 'At least one lowercase letter')
-         .regex(/[^A-Za-z0-9]/, 'At least one special character'),
+         .min(PASSWORD_LENGTH, `Password too weak`)
+         .regex(/[0-9]/, 'Password too weak')
+         .regex(/[a-z]/, 'Password too weak')
+         .regex(/[^A-Za-z0-9]/, 'Password too weak'),
       confirmPassword: z.string(),
    })
    .refine(data => data.password === data.confirmPassword, {
@@ -30,28 +30,51 @@ const schema = z
    });
 
 type FormValues = z.infer<typeof schema>;
-export const StepOne = () => {
-   const router = useRouter();
-   const updateUser = useUserStore(state => state.updateUser);
-   const email = useUserStore(state => state.email);
-   const { handleSubmit, register, watch } = useForm<FormValues>({
-      resolver: zodResolver(schema),
-      mode: 'onChange',
-      defaultValues: {
+
+const defaultValues = {
          email: '',
          password: '',
          confirmPassword: '',
-      },
-      values: {
-         email,
-         password: '',
-         confirmPassword: '',
-      },
+      }
+export const StepOne = () => {
+   const router = useRouter();
+   const updateUser = useUserStore(state => state.updateUser);
+   const email = useUserStore(state => {
+		return state.email;
    });
-   const [passwordValue, confirmPasswordValue] = watch(['password', 'confirmPassword']);
+	const [values, setValues] = useState(defaultValues);
+   const {
+      handleSubmit,
+      register,
+		getValues,
+      watch,
+      formState: { errors, touchedFields },
+   } = useForm<FormValues>({
+		resetOptions: {
+			keepTouched: true
+		},
+      resolver: zodResolver(schema),
+      mode: 'onTouched',
+      defaultValues: defaultValues,
+      values: values,
+   });
+	useEffect(() => {
+		const values = getValues();
+		setValues({...values, email});
+	}, [email, getValues])
+   const passwordValue = watch('password');
+   useEffect(() => {
+		return () => {
+			console.log('🚀 ~ StepOne ~ passwordValue:', passwordValue);
+			console.log('🚀 ~ StepOne ~ touchedFields:', touchedFields)
+      };
+   }, [passwordValue, touchedFields]);
    const strengthChecks = useMemo(
       () => [
-         { label: 'At least 6 characters', met: (passwordValue || '').length >= 6 },
+         {
+            label: `At least ${PASSWORD_LENGTH} characters`,
+            met: (passwordValue || '').length >= PASSWORD_LENGTH,
+         },
          { label: 'At least 1 number', met: /[0-9]/.test(passwordValue || '') },
          { label: 'At least 1 lowercase letter', met: /[a-z]/.test(passwordValue || '') },
          { label: 'At least 1 special character', met: /[^A-Za-z0-9]/.test(passwordValue || '') },
@@ -70,16 +93,22 @@ export const StepOne = () => {
             <p className={s.cardSubtitle}>Step 1 of 4</p>
          </div>
          <form onSubmit={handleSubmit(onSubmit)} className={s.stepOneForm}>
-            <Input label='Email' placeholder='Enter your email' {...register('email')} />
+            <Input
+               label='Email'
+               placeholder='Enter your email'
+               {...register('email')}
+               error={errors.email?.message}
+            />
             <div>
                <PasswordInput
                   label='Create Password'
                   placeholder='Crete your password'
                   className={s.inputMarginTop}
+                  error={errors.password?.message}
                   {...register('password')}
                />
                <PasswordStrengthIndicator
-                  isPasswordsMatch={passwordValue === confirmPasswordValue}
+                  isShow={touchedFields.password}
                   rules={strengthChecks}
                   className={s.passwordStrengthIndicator}
                />
@@ -87,6 +116,7 @@ export const StepOne = () => {
             <PasswordInput
                label='Confirm Password'
                placeholder='Confirm your password'
+               error={errors.confirmPassword?.message}
                {...register('confirmPassword')}
             />
             <div className={s.buttonsContainer}>

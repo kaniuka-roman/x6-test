@@ -14,7 +14,7 @@ import { accountTypes } from '@/lib/constants';
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
 const schema = z.object({
-   nickname: z.string().min(2, 'Too short'),
+   nickname: z.string().min(1, 'Nickname is required').min(2, 'Too short'),
    accountType: z.literal(accountTypes.map(item => item.name)),
    profileImage: z
       .any()
@@ -34,9 +34,9 @@ export const StepThree = () => {
 	const accountType = useUserStore(state => state.accountType);
 	const profileImage = useUserStore(state => state.profileImage);
 	const updateUser = useUserStore(state => state.updateUser);
-   const { handleSubmit, register, control } = useForm<FormValues>({
+   const { handleSubmit, register, control, formState: { errors } } = useForm<FormValues>({
       resolver: zodResolver(schema),
-      mode: 'onChange',
+      mode: 'onTouched',
       defaultValues: {
          nickname: '',
          accountType,
@@ -73,7 +73,7 @@ export const StepThree = () => {
                )}
             />
             <div className={s.inputContainer}>
-               <Input label='Nickname' {...register('nickname')} placeholder='Nickname' />
+               <Input label='Nickname' {...register('nickname')} placeholder='Nickname' error={errors.nickname?.message} />
                <Controller
                   name='accountType'
                   control={control}

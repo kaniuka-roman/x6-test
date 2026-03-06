@@ -7,11 +7,11 @@
 	overflow: hidden;
 	& .backgroundImage {
 		position: absolute;
-		top: 0;
+		top: 50%;
 		left: 50%;
-		transform: translateX(-50%);
-		width: 1157px;
-		height: 100%;
+		transform: translate(-50%, -50%);
+		width: 1457px;
+		height: auto;
 		z-index: -1;
 	}
 	& .cancelButton {

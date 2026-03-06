@@ -16,12 +16,12 @@ export default function ForgotPasswordPage() {
    const email = useForgotPasswordStore(state => state.email);
    const updateData = useForgotPasswordStore(state => state.updateData);
 
-   const { handleSubmit, register } = useForm<ForgotForm>({
+   const { handleSubmit, register, formState: { errors} } = useForm<ForgotForm>({
 		resolver: zodResolver(schema),
       defaultValues: {
          email,
       },
-      mode: 'onSubmit',
+      mode: 'onTouched',
       values: {
          email,
       },
@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
    };
    return (
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-         <Input label='Email' placeholder='Enter you email' type='email' {...register('email')} />
+         <Input label='Email' placeholder='Enter you email' type='email' {...register('email')} error={errors.email?.message} />
          <Button type='submit'>
             Send Code
          </Button>

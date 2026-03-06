@@ -23,8 +23,10 @@ export const LoginForm = () => {
    const {
       register,
       handleSubmit,
+      formState: { errors },
    } = useForm<LoginFormValues>({
-		resolver: zodResolver(loginSchema),
+		mode: 'onTouched',
+      resolver: zodResolver(loginSchema),
       defaultValues: {
          email: '',
          password: '',
@@ -34,11 +36,18 @@ export const LoginForm = () => {
    const onSubmit = (data: LoginFormValues) => console.log(data);
    return (
       <form onSubmit={handleSubmit(onSubmit)} className={s.loginForm}>
-         <Input label='Email' placeholder='Enter you email' type='email' {...register('email')} />
+         <Input
+            label='Email'
+            placeholder='Enter you email'
+            type='email'
+            {...register('email')}
+            error={errors.email?.message}
+         />
          <PasswordInput
             label='Password'
             placeholder='Enter you password'
             {...register('password')}
+            error={errors.password?.message}
          />
          <div className={s.loginFormBottom}>
             <Checkbox label='Remember me' {...register('rememberMe')} />

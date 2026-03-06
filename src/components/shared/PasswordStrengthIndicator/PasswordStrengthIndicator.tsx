@@ -3,38 +3,24 @@ import s from './PasswordStrengthIndicator.module.scss';
 import {
    PasswordDoesntPassValidation,
    PasswordPassValidation,
-   WarningIcon,
 } from '@/components/icons/icons';
 
 type PasswordStrengthIndicatorProps = {
-   isPasswordsMatch: boolean;
    rules: {
       label: string;
       met: boolean;
    }[];
    className?: string;
+	isShow?: boolean
 };
 
 export const PasswordStrengthIndicator = ({
-   isPasswordsMatch,
    rules,
    className,
+	isShow
 }: PasswordStrengthIndicatorProps) => {
-   const allChecksMet = rules.every(check => check.met);
    return (
-      <div className={clsx(s.container, className)}>
-         {(!allChecksMet || !isPasswordsMatch) && (
-            <div className={s.warning}>
-               <WarningIcon />
-               <p>
-                  {!allChecksMet
-                     ? 'Password too weak'
-                     : !isPasswordsMatch
-                       ? 'Passwords do not match'
-                       : ''}
-               </p>
-            </div>
-         )}
+      <div className={clsx(s.container, isShow && s.show, className)}>
          <div className={s.strengthIndicator}>
             {rules.map((check, index) => (
                <div key={index} className={clsx(s.ruleItem, check.met ? s.ruleMet : s.ruleNotMet)}>

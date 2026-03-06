@@ -1,10 +1,11 @@
 .inputContainer {
 	display: flex;
 	flex-direction: column;
-	gap: 9px;
 	& .label {
 		color: rgba(17, 49, 93, 0.5);
 		font-size: 0.875rem;
+		margin-bottom: 9px;
+		width: fit-content;
 	}
 	& .input {
 		padding: 15px 16px;
@@ -16,9 +17,30 @@
 		font-size: 0.875rem;
 		line-height: 1.15;
 	}
+	& .warning {
+		display: flex;
+		gap: 4px;
+		align-items: center;
+		padding: 0px 10px 0px 8px;
+		background: rgba(255, 88, 50, 0.1);
+		border-radius: 60px;
+		color: rgba(255, 88, 50, 1);
+		font-size: 0.75rem;
+		letter-spacing: -0.01em;
+		line-height: 1.2;
+		width: fit-content;
+		height: fit-content;
+		max-height: 0;
+		overflow: hidden;
+		transition: all 0.2s ease-in-out;
+		&.active {
+			padding-block: 5px;
+			max-height: 24px;
+			margin-top: 9px;
+		}
+	}
 	& .passwordInputWrapper {
 		display: flex;
-		padding-inline: 16px;
 		border: 1px solid rgba(53, 89, 137, 0.2);
 		border-radius: 10px;
 		background: rgba(249, 249, 249, 1);
@@ -26,7 +48,8 @@
 			border: none;
 			outline: none;
 			background: none;
-			padding-block: 16px;
+			padding: 16px;
+			padding-right: 0;
 			flex: 1;
 		}
 		& .hideButton {
@@ -37,6 +60,7 @@
 			outline: none;
 			background: none;
 			cursor: pointer;
+			padding-inline: 16px;;
 		}
 	}
 	& .passwordInput,
@@ -65,28 +89,30 @@
 		align-items: center;
 		width: 20px;
 		height: 20px;
-		outline: 1px solid rgba(53, 89, 137, 0.2);
+		border: 1px solid rgba(17, 49, 93, 0.1);
 		border-radius: 4px;
-		background: rgba(255, 255, 255, 0);
+		background: rgb(233, 238, 243);
 
-		transition:
-			all 0.2s ease-in-out;
+		transition: all 0.2s ease-in-out;
 		svg {
 			width: 12px;
 			height: 9px;
 			opacity: 0;
 			transition: opacity 0.2s ease-in-out;
 		}
+		&:hover {
+			border-color: rgb(61, 130, 222);
+		}
 	}
 	& .checkbox:checked + .label .customCheckbox {
-		outline-color:transparent;
+		border-color: transparent;
 		box-shadow:
 			inset 0px 1px 18px 2px rgba(173, 208, 255, 0.2),
 			inset 0px 1px 4px 1px rgba(222, 236, 255, 0.8),
 			0px 42px 107px 0px rgba(61, 130, 222, 0.34),
 			0px 10px 10px 0px rgba(61, 130, 222, 0.2),
 			0px 3.71px 4.845815658569336px 0px rgba(61, 130, 222, 0.15);
-		background: rgba(60.52, 129.8, 222.17, 1);
+		background: rgba(60.52, 129.8, 222.17, 0.8);
 		svg {
 			opacity: 1;
 		}
@@ -139,7 +165,8 @@ $radius: 0.5rem;
 	border-radius: 10px;
 	color: rgba(17, 49, 93, 1);
 	background-color: rgba(249, 249, 249, 1);
-	&[data-active="true"], &.fill {
+	&[data-active="true"],
+	&.fill {
 		outline-color: transparent;
 		z-index: 10;
 		border-color: rgba(34, 106, 205, 0.2);

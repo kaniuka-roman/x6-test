@@ -5,7 +5,6 @@ import { PasswordInput } from '@/components/ui/Inputs/PasswordInput';
 import s from './page.module.scss';
 import * as z from 'zod';
 import { useMemo } from 'react';
-import { useForgotPasswordStore } from '@/lib/store';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,10 +13,10 @@ const schema = z
    .object({
       password: z
          .string()
-         .min(6, 'At least 6 characters')
-         .regex(/[0-9]/, 'At least one digit')
-         .regex(/[a-z]/, 'At least one lowercase letter')
-         .regex(/[^A-Za-z0-9]/, 'At least one special character'),
+         .min(6, 'Password too weak')
+         .regex(/[0-9]/, 'Password too weak')
+         .regex(/[a-z]/, 'Password too weak')
+         .regex(/[^A-Za-z0-9]/, 'Password too weak'),
       confirmPassword: z.string(),
    })
    .refine(data => data.password === data.confirmPassword, {
@@ -28,9 +27,12 @@ const schema = z
 type FormValues = z.infer<typeof schema>;
 export default function NewPasswordPage() {
    const router = useRouter();
-   const { handleSubmit, register, watch } = useForm<FormValues>({
+   const { handleSubmit, register, watch, formState: { errors, touchedFields } } = useForm<FormValues>({
       resolver: zodResolver(schema),
-      mode: 'onChange',
+      mode: 'onTouched',
+		resetOptions: {
+			keepTouched: true
+		},
       defaultValues: {
          password: '',
          confirmPassword: '',
@@ -40,7 +42,7 @@ export default function NewPasswordPage() {
          confirmPassword: '',
       },
    });
-   const [passwordValue, confirmPasswordValue] = watch(['password', 'confirmPassword']);
+   const passwordValue = watch('password');
    const strengthChecks = useMemo(
       () => [
          { label: 'At least 6 characters', met: (passwordValue || '').length >= 6 },
@@ -60,10 +62,11 @@ export default function NewPasswordPage() {
             <PasswordInput
                label='Create New Password'
                placeholder='Crete your new password'
+					error={errors.password?.message}
                {...register('password')}
             />
             <PasswordStrengthIndicator
-               isPasswordsMatch={passwordValue === confirmPasswordValue}
+               isShow={touchedFields.password}
                rules={strengthChecks}
                className={s.passwordStrengthIndicator}
             />
@@ -71,6 +74,7 @@ export default function NewPasswordPage() {
          <PasswordInput
             label='Confirm New Password'
             placeholder='Confirm your new password'
+				error={errors.confirmPassword?.message}
             {...register('confirmPassword')}
          />
          <Button type='submit'>Login</Button>
