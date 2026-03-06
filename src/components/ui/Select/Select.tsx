@@ -15,7 +15,6 @@ type SelectProps = {
    onChange: (value: string) => void;
    value: string;
    className?: string;
-   defaultValue?: string;
 };
 
 type DropdownProps = {
@@ -27,25 +26,17 @@ type DropdownProps = {
    label: string;
    ref: React.RefObject<HTMLDivElement | null>;
 };
-export const Select = ({
-   label,
-   onChange,
-   value,
-   className,
-   options,
-   defaultValue,
-}: SelectProps) => {
+export const Select = ({ label, onChange, value, className, options }: SelectProps) => {
    const [isOpen, setIsOpen] = useState(false);
    const [selectPosition, setSelectPosition] = useState({
       x: 0,
       y: 0,
    });
-   const [selectedOption, setSelectedOption] = useState(() =>
-      options.find(option => option.value === (value || defaultValue)),
-   );
-
    const selectRef = useRef<HTMLDivElement>(null);
    const dropdownRef = useRef<HTMLDivElement>(null);
+
+   const selectedOption = value ? options.find(option => option.value === value) : null;
+
    const currentOptionLabel = selectedOption?.label || 'Select an option';
 
    const handleOpenSelect = () => setIsOpen(!isOpen);
@@ -76,11 +67,10 @@ export const Select = ({
          document.removeEventListener('click', closeOnClickOutside);
       };
    }, [isOpen]);
-	const handleOptionClick = (option: Option) => {
-		setSelectedOption(option);
-		setIsOpen(false);
-		onChange(option.value);
-	}
+   const handleOptionClick = (option: Option) => {
+      setIsOpen(false);
+      onChange(option.value);
+   };
    return (
       <div className={s.selectContainer}>
          <p className={s.label} onClick={handleOpenSelect}>

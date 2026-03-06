@@ -44,16 +44,16 @@
 		}
 		font-size: 0.875rem;
 	}
+& .buttonsContainer {
+			display: flex;
+			gap: 12px;
+		}
 	& .stepOneForm {
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
 		& .passwordStrengthIndicator {
 			margin-top: 8px;
-		}
-		& .buttonsContainer {
-			display: flex;
-			gap: 12px;
 		}
 	}
 	& .stepTwoForm {
@@ -88,9 +88,6 @@
 			flex-direction: column;
 			gap: 24px;
 		}
-		& .buttonsContainer {
-			display: flex;
-			gap: 12px;
-		}
+
 	}
 }

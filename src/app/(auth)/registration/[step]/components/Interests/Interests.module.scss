@@ -1,0 +1,47 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	& .interestsText {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		& .interestsTitle {
+			font-size: 1rem;
+			line-height: 1;
+			color: rgba(17, 49, 93, 1);
+		}
+		& .interestsSubtitle {
+			font-size: 0.875rem;
+			line-height: 1.15;
+			color: rgba(17, 49, 93, 0.5);
+		}
+	}
+	& .interests {
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+		& .interest {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			outline: 1px solid rgba(34, 106, 205, 0.2);
+			border-radius: 10px;
+			background: transparent;
+			padding: 9px 8px;
+			font-size: 0.75rem;
+			line-height: 1.17;
+			color: rgba(17, 49, 93, 1);
+			letter-spacing: -0.01em;
+			border: none;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			&.selected {
+				color: white;
+				background: rgba(84, 153, 247, 1);
+				box-shadow: inset 0px 0px 10px 0px rgba(255, 255, 255, 0.7);
+				outline: none;
+			}
+		}
+	}
+}

@@ -15,7 +15,7 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
 const schema = z.object({
    nickname: z.string().min(2, 'Too short'),
-   accountType: z.string().min(1, 'Too short'),
+   accountType: z.literal(accountTypes.map(item => item.name)),
    profileImage: z
       .any()
 		.optional()
@@ -31,7 +31,7 @@ type FormValues = z.infer<typeof schema>;
 export const StepThree = () => {
    const router = useRouter();
 	const nickname = useUserStore(state => state.nickname);
-	const accountType = useUserStore(state => state.account_type);
+	const accountType = useUserStore(state => state.accountType);
 	const profileImage = useUserStore(state => state.profileImage);
 	const updateUser = useUserStore(state => state.updateUser);
    const { handleSubmit, register, control } = useForm<FormValues>({
@@ -39,7 +39,7 @@ export const StepThree = () => {
       mode: 'onChange',
       defaultValues: {
          nickname: '',
-         accountType: '',
+         accountType,
          profileImage: null,
       },
 		values: {
@@ -82,7 +82,7 @@ export const StepThree = () => {
                         label='Account type'
                         options={accountTypes.map(type => ({
                            label: type.name,
-                           value: type.name.replace(/\s+/g, ''),
+                           value: type.name.replace(/\s+/g, '_'),
                         }))}
                         value={value}
                         onChange={onChange}

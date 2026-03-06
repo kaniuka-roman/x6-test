@@ -1,8 +1,25 @@
 .container {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	& .cancelButton {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		top: 12px;
+		left: 12px;
+		width: 32px;
+		height: 32px;
+		border-radius: 10px;
+		box-shadow: 0px 3px 6px 0px rgba(31, 31, 31, 0.05);
+		backdrop-filter: blur(50px);
+		background: rgba(17, 49, 93, 0.1);
+		border: 1px solid rgba(34, 106, 205, 0.5);
+		cursor: pointer;
+	}
 	& .card {
 		position: relative;
 		max-width: 384px;

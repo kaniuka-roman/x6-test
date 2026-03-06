@@ -373,7 +373,7 @@ export const ChevronIcon = (props: SVGProps<SVGSVGElement>) => {
                <path
                   id='Vector'
                   d='M13.2 0L7.76667 5.43333C7.125 6.075 6.075 6.075 5.43333 5.43333L0 0'
-                  fill-rule='nonzero'
+                  fillRule='nonzero'
                   stroke='rgb(17,49,93)'
                   strokeLinecap='round'
                   strokeLinejoin='round'
@@ -407,6 +407,26 @@ export const TrashBasketIcon = (props: SVGProps<SVGSVGElement>) => {
          <path
             d='M13.3333 3.33398C13.7015 3.33398 14 3.63246 14 4.00065C14 4.36884 13.7015 4.66732 13.3333 4.66732H12.6667L12.665 4.71484L12.0425 13.429C11.9927 14.1267 11.4121 14.6673 10.7126 14.6673H5.28744C4.58793 14.6673 4.00733 14.1267 3.95749 13.429L3.33505 4.71484C3.33392 4.6989 3.33335 4.68306 3.33333 4.66732H2.66667C2.29848 4.66732 2 4.36884 2 4.00065C2 3.63246 2.29848 3.33398 2.66667 3.33398H13.3333ZM11.3317 4.66732H4.66839L5.28744 13.334H10.7126L11.3317 4.66732ZM9.33333 1.33398C9.70153 1.33398 10 1.63246 10 2.00065C10 2.36884 9.70153 2.66732 9.33333 2.66732H6.66667C6.29848 2.66732 6 2.36884 6 2.00065C6 1.63246 6.29848 1.33398 6.66667 1.33398H9.33333Z'
             fill='#11315D'
+         />
+      </svg>
+   );
+};
+
+export const CrossIcon = (props: SVGProps<SVGSVGElement>) => {
+   return (
+      <svg
+         width='20'
+         height='20'
+         viewBox='0 0 20 20'
+         fill='none'
+         xmlns='http://www.w3.org/2000/svg' {...props}>
+         <path
+            d='M6 14.486L14.486 6M14.486 14.486L6 6'
+            stroke='#11315D'
+            strokeWidth='1.5'
+            strokeMiterlimit='10'
+            strokeLinecap='round'
+            strokeLinejoin='round'
          />
       </svg>
    );
