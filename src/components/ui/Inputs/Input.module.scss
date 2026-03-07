@@ -51,6 +51,9 @@
 			padding: 16px;
 			padding-right: 0;
 			flex: 1;
+			min-width: 0;
+			-webkit-appearance: none;
+			line-height: normal;
 		}
 		& .hideButton {
 			display: flex;
@@ -60,7 +63,7 @@
 			outline: none;
 			background: none;
 			cursor: pointer;
-			padding-inline: 16px;;
+			padding-inline: 16px;
 		}
 	}
 	& .passwordInput,
