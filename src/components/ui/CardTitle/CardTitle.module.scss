@@ -1,0 +1,8 @@
+.cardTitle {
+	color: rgba(17, 49, 93, 1);
+	font-size: 1.75rem;
+	font-weight: 500;
+	@media (width < 480px) {
+		font-size: 1.5rem;
+	}
+}

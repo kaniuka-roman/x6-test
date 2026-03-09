@@ -1,6 +1,9 @@
 .googleAuthButton {
+	display: flex;
+	align-items: center;
 	width: 100%;
-	padding-block: 10px;
+	height: 38px;
+	padding-block: 9px;
 	padding-inline: 12px;
 	border-radius: 10px;
 	background: none;

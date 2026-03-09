@@ -9,6 +9,9 @@ html body {
 	display: flex;
    font-family: var(--font-twklausanne), Arial, Helvetica, sans-serif;
 	padding: 10px 8px;
+	@media (width < 480px) {
+		padding: 0;
+	}
 }
 
 html * {
@@ -23,6 +26,10 @@ html * {
 	border-radius: 14px;
 	height: 100%;
 	width: 100%;
+	@media (width < 480px) {
+		padding: 16px;
+		border: 0px;
+	}
 }
 
 html a {

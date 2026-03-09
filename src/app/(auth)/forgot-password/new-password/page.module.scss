@@ -2,7 +2,8 @@
 	gap: 32px;
 	display: flex;
 	flex-direction: column;
-	& .passwordStrengthIndicator {
-		margin-top: 12px;
+	@media (width < 480px) {
+		gap: 24px;
 	}
+
 }

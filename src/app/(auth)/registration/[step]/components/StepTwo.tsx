@@ -10,6 +10,7 @@ import { useUserStore } from '@/lib/store';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/Inputs/InputOTP';
 import {  useState } from 'react';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
+import { CardTitle } from '@/components/ui/CardTitle/CardTitle';
 
 const schema = z.object({
    otp: z.string().length(6, 'OTP must be 6 digits'),
@@ -43,7 +44,7 @@ export const StepTwo = () => {
    return (
       <div className={s.container}>
          <div className={s.header}>
-            <h2 className={s.cardTitle}>Verify your email</h2>
+            <CardTitle>Verify your email</CardTitle>
             <p className={s.cardSubtitle}>Step 2 of 4</p>
          </div>
          <form onSubmit={handleSubmit(onSubmit)} className={s.stepTwoForm}>

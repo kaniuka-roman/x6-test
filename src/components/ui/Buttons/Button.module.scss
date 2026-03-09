@@ -1,8 +1,9 @@
 .button {
 	position: relative;
+	display: flex;
+	align-items: center;
 	width: 100%;
 	padding-inline: 24px;
-	padding-block: 10px;
 	border: none;
 	border-radius: 10px;
 	text-decoration: none;
@@ -12,7 +13,10 @@
 	justify-content: center;
 	line-height: 1.15;
 	cursor: pointer;
-	min-height: 36px;
+	height: 36px;
+	@media (width < 480px) {
+		height: 44px;
+	}
 	&.primary {
 		background-image: radial-gradient(at 50% 200%, rgba(186, 215, 255, 1) 10%, rgba(33, 70, 120, 1) 90%);
 		color: #fff;

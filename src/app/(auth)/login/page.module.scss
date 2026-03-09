@@ -1,18 +1,16 @@
 .container {
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
 	height: 100%;
-
+	overflow: auto;
+	@media (width < 480px) {
+		padding-right: 6px;
+	}
 	& .header {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		& .cardTitle {
-			color: rgba(17, 49, 93, 1);
-			font-size: 28px;
-			font-weight: 500;
-		}
+		
 		& .cardSubtitle {
 			color: rgba(17, 49, 93, 0.7);
 			font-size: 14px;
@@ -20,6 +18,9 @@
 		}
 		& .googleAuthButton {
 			margin-top: 32px;
+			@media (width < 480px) {
+				margin-top: 24px;
+			}
 		}
 	}
 	& .separator {
@@ -47,15 +48,21 @@
 		&::after {
 			right: 0;
 		}
+		@media (width < 480px) {
+			margin-top: 16px;
+		}
 	}
 	& .cardFooter {
 		margin-top: 32px;
 		display: flex;
 		justify-content: center;
+		font-size: 0.875rem;
+		@media (width < 480px) {
+			margin-top: 24px;
+		}
 		span {
 			color: rgba(17, 49, 93, 0.5);
 			font-size: 0.875rem;
 		}
-		font-size: 0.875rem;
 	}
 }

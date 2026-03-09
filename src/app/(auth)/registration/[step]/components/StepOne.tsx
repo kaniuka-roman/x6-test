@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/lib/store';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { CardTitle } from '@/components/ui/CardTitle/CardTitle';
 const PASSWORD_LENGTH = 6;
 const schema = z
    .object({
@@ -89,7 +90,7 @@ export const StepOne = () => {
    return (
       <div className={s.container}>
          <div className={s.header}>
-            <h2 className={s.cardTitle}>Welcome to X6sense</h2>
+            <CardTitle>Welcome to X6sense</CardTitle>
             <p className={s.cardSubtitle}>Step 1 of 4</p>
          </div>
          <form onSubmit={handleSubmit(onSubmit)} className={s.stepOneForm}>
@@ -99,7 +100,7 @@ export const StepOne = () => {
                {...register('email')}
                error={errors.email?.message}
             />
-            <div>
+            <div >
                <PasswordInput
                   label='Create Password'
                   placeholder='Crete your password'

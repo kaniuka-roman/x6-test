@@ -8,7 +8,8 @@
 		width: fit-content;
 	}
 	& .input {
-		padding: 15px 16px;
+		height: 48px;
+		padding: 0 16px;
 		border: 1px solid rgba(53, 89, 137, 0.2);
 		border-radius: 10px;
 		background: rgba(249, 249, 249, 1);
@@ -148,12 +149,21 @@ $radius: 0.5rem;
 		cursor: not-allowed;
 		opacity: 0.5;
 	}
+	input {
+		width: 100% !important;
+	}
 }
 
 .inputOTPGroup {
 	display: flex;
 	gap: 10px;
 	align-items: center;
+	padding-inline: 1px;
+	width: 100%;
+	max-width: 328px;
+	@media (width < 390px) {
+		gap: 6px;
+	}
 }
 
 .inputOTPSlot {
@@ -161,7 +171,7 @@ $radius: 0.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 45px;
+	flex: 1;
 	height: 48px;
 	font-size: 1rem;
 	line-height: 1;

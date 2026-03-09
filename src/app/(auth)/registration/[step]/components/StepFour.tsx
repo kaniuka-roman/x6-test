@@ -6,14 +6,16 @@ import { Interests } from './Interests/Interests';
 import { useUserStore } from '@/lib/store';
 import { interestsOptions } from '@/lib/constants';
 import { ButtonLink } from '@/components/ui/Buttons/ButtonLink';
+import { CardTitle } from '@/components/ui/CardTitle/CardTitle';
+import clsx from 'clsx';
 export const StepFour = () => {
 	const interests = useUserStore(state => state.interests);
 	const updateInterests = useUserStore(state => state.updateInterests);
    const router = useRouter();
    return (
-      <div className={s.container}>
+      <div className={clsx(s.container, s.stepFour)}>
          <div className={s.header}>
-            <h2 className={s.cardTitle}>Let&apos;s get you set up!</h2>
+            <CardTitle>Let&apos;s get you set up!</CardTitle>
             <p className={s.cardSubtitle}>Step 4 of 4</p>
          </div>
          <Interests interests={interestsOptions} selectedInterests={interests} onSelect={updateInterests} />

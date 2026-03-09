@@ -4,6 +4,10 @@
 	flex-direction: column;
 	height: 100%;
 	gap: 32px;
+	overflow: auto;
+	@media (width < 480px) {
+		gap: 24px;
+	}
 	& .header {
 		display: flex;
 		flex-direction: column;
@@ -28,7 +32,7 @@
 		width: 100%;
 		display: flex;
 		justify-content: center;
- 		p {
+		p {
 			color: rgba(17, 49, 93, 0.5);
 			font-size: 0.875rem;
 		}
@@ -48,5 +52,30 @@
 			right: 0;
 		}
 	}
-
+	& .agreement {
+		color: rgba(17, 49, 93, 0.5);
+		font-size: 0.75rem;
+		line-height: 1.2;
+		text-align: center;
+		width: 240px;
+		align-self: center;
+		& span {
+			text-decoration: underline;
+		}
+	}
+	& .footer {
+		display: flex;
+		justify-content: center;
+		span {
+			color: rgba(17, 49, 93, 0.5);
+			font-size: 0.875rem;
+		}
+		& span.link {
+			color: rgba(61, 130, 222, 1);
+			font-size: 0.875rem;
+			letter-spacing: -0.02em;
+			cursor: pointer;
+		}
+		font-size: 0.875rem;
+	}
 }

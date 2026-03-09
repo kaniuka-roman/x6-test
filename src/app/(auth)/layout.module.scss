@@ -5,6 +5,10 @@
 	align-items: center;
 	height: 100%;
 	overflow: hidden;
+	@media (width < 480px) {
+		padding-top: 40px;
+	}
+
 	& .backgroundImage {
 		position: absolute;
 		top: 50%;
@@ -29,11 +33,20 @@
 		background: rgba(17, 49, 93, 0.1);
 		border: 1px solid rgba(34, 106, 205, 0.5);
 		cursor: pointer;
+		z-index: 1;
+		@media (width < 480px ) {
+			top: 0;
+			left: 2px;
+		}
 	}
 	& .card {
 		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
 		max-width: 384px;
 		width: 100%;
+		max-height: 100%;
 		padding-block: 40px;
 		padding-inline: 32px;
 		border-radius: 20px;
@@ -49,10 +62,12 @@
 				)
 				border-box;
 		box-shadow: 0px 5px 20px 0px rgba(0, 99, 233, 0.05);
+		@media (width <480px) {
+			padding: 24px;
+		}
 		& .cardHeader {
 			display: flex;
 			justify-content: center;
-			margin-bottom: 16px;
 		}
 	}
 }

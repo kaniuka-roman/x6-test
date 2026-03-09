@@ -11,6 +11,8 @@ import { useUserStore } from '@/lib/store';
 import { ImageUploader } from '@/components/shared/ImageUploader/ImageUploader';
 import { Select } from '@/components/ui/Select/Select';
 import { accountTypes } from '@/lib/constants';
+import { CardTitle } from '@/components/ui/CardTitle/CardTitle';
+import clsx from 'clsx';
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
 const schema = z.object({
@@ -54,9 +56,9 @@ export const StepThree = () => {
       router.push('/registration/4');
    };
    return (
-      <div className={s.container}>
+      <div className={clsx(s.container, s.stepThree)}>
          <div className={s.header}>
-            <h2 className={s.cardTitle}>Let&apos;s get you set up!</h2>
+            <CardTitle>Let&apos;s get you set up!</CardTitle>
             <p className={s.cardSubtitle}>Step 3 of 4</p>
          </div>
          <form onSubmit={handleSubmit(onSubmit)} className={s.stepThreeForm}>

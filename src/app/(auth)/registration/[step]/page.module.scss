@@ -1,17 +1,20 @@
 .container {
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
 	height: 100%;
 	gap: 32px;
+	overflow: auto;
+	@media (width < 480px) {
+		padding-right: 6px;
+		gap: 16px;
+		&:is(.stepThree, .stepFour) {
+			gap: 24px;
+		}
+	}
 	& .header {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		& .cardTitle {
-			color: rgba(17, 49, 93, 1);
-			font-size: 28px;
-		}
 		& .cardSubtitle {
 			color: rgba(17, 49, 93, 0.7);
 			font-size: 14px;
@@ -44,17 +47,17 @@
 		}
 		font-size: 0.875rem;
 	}
-& .buttonsContainer {
-			display: flex;
-			gap: 12px;
-		}
+	& .buttonsContainer {
+		display: flex;
+		gap: 12px;
+	}
 	& .stepOneForm {
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
-		& .passwordStrengthIndicator {
-			margin-top: 8px;
-		}
+		// & .passwordStrengthIndicator {
+		// 	margin-top: 8px;
+		// }
 	}
 	& .stepTwoForm {
 		display: flex;
@@ -88,6 +91,5 @@
 			flex-direction: column;
 			gap: 24px;
 		}
-
 	}
 }

@@ -4,6 +4,9 @@
 	flex-direction: column;
 	height: 100%;
 	gap: 32px;
+	@media (width < 480px) {
+		gap: 24px;
+	}
 	& .header {
 		display: flex;
 		flex-direction: column;
@@ -22,6 +25,9 @@
 		display: flex;
 		flex-direction: column;
 		gap: 32px;
+		@media (width < 480px) {
+			gap: 24px;
+		}
 	}
 	& .backToLogin {
 		align-self: center;

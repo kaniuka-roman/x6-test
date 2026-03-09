@@ -2,11 +2,12 @@ import s from './page.module.scss';
 import { GoogleAuthButton } from '@/components/ui/GoogleAuthButton/GoogleAuthButton';
 import { LoginForm } from './components/LoginForm/LoginForm';
 import Link from 'next/link';
+import { CardTitle } from '@/components/ui/CardTitle/CardTitle';
 export default function LoginPage() {
    return (
       <div className={s.container}>
          <div className={s.header}>
-            <h2 className={s.cardTitle}>Welcome back</h2>
+            <CardTitle>Welcome back</CardTitle>
             <p className={s.cardSubtitle}>Sign in to account to continue</p>
             <GoogleAuthButton className={s.googleAuthButton} />
          </div>

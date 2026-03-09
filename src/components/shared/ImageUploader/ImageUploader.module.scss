@@ -119,8 +119,10 @@ $bg-gray: #f8fafc;
 		align-items: center;
 		gap: 4px;
 		letter-spacing: -0.02em;
-		padding-inline: 12px;
-		padding-block: 8px;
+		padding-left: 12px;
+		padding-right: 16px;
+		padding-block: 6px;
 		font-size: 0.875rem;
+		height: 32px;
 	}
 }
